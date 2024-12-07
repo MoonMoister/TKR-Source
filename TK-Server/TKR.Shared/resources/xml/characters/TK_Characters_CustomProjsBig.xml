@@ -16,6 +16,7 @@
       <Speed>140</Speed>
       <Size>125</Size>
       <LifetimeMS>1200</LifetimeMS>
+      <Homing/>
       <MultiHit />
       <ArmorPiercing />
     </Projectile>

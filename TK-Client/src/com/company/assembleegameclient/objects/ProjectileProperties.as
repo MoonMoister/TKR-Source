@@ -28,7 +28,8 @@ public class ProjectileProperties
    public var magnitude_:Number;
    public var faceDir_:Boolean;
    public var noRotation_:Boolean;
-
+   public var homing_:Boolean;
+   
    public function ProjectileProperties(projectileXML:XML)
    {
       var condEffectXML:XML = null;
@@ -67,6 +68,7 @@ public class ProjectileProperties
       this.magnitude_ = Boolean(projectileXML.hasOwnProperty("Magnitude"))?Number(Number(projectileXML.Magnitude)):Number(3);
       this.faceDir_ = projectileXML.hasOwnProperty("FaceDir");
       this.noRotation_ = projectileXML.hasOwnProperty("NoRotation");
+      this.homing_ = projectileXML.hasOwnProperty("Homing");
       if (projectileXML.ParticleTrail.hasOwnProperty("@intensity")) {
          this.particleTrailIntensity_ = (Number(projectileXML.ParticleTrail.@intensity) * 100);
       }

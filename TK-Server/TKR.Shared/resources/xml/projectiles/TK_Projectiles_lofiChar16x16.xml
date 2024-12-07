@@ -32,5 +32,6 @@
       </AnimatedTexture>
     </RandomTexture>
     <Rotation>185</Rotation>
+    <Homing/>
   </Object>
 </Objects>

@@ -42,6 +42,7 @@ namespace TKR.WorldServer.core.objects
             public float Angle;
             public int ObjectType;
             public int Damage;
+            public bool Homing;
             public bool Spawned;
             public bool DamagesPlayers;
             public bool DamagesEnemies;
@@ -60,6 +61,7 @@ namespace TKR.WorldServer.core.objects
                 Damage = damage;
                 DamagesPlayers = damagesPlayers;
                 DamagesEnemies = damagesEnemies;
+                Homing = desc.Homing;
             }
 
             public Position GetPosition(int elapsed, int bulletId, ProjectileDesc desc)
@@ -90,6 +92,17 @@ namespace TKR.WorldServer.core.objects
                     var cos = Math.Cos(Angle);
                     pX += (x * cos - y * sin) * desc.Magnitude;
                     pY += (x * sin + y * cos) * desc.Magnitude;
+                }
+                else if (Homing)
+                {
+                    var nearestTarget = GetNearestTarget(pX, pY);
+                    if (nearestTarget != null)
+                    {
+                        var targetAngle = Math.Atan2(nearestTarget.Y - pY, nearestTarget.X - pX);
+                        Angle += (targetAngle - Angle) * 0.1; // Smoothly adjust angle towards target
+                    }
+                    pX += dist * Math.Cos(Angle);
+                    pY += dist * Math.Sin(Angle);
                 }
                 else
                 {

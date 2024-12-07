@@ -185,7 +185,8 @@ public class Projectile extends BasicObject
       FreeList.deleteObject(this);
    }
 
-   private function positionAt(elapsed:int, p:Point) : void
+
+private function positionAt(elapsed:int, p:Point) : void
    {
       var periodFactor:Number = NaN;
       var amplitudeFactor:Number = NaN;
@@ -201,6 +202,15 @@ public class Projectile extends BasicObject
       p.y = this.startY_;
       var dist:Number = elapsed * (this.projProps_.speed_ / 10000);
       var phase:Number = this.bulletId_ % 2 == 0?Number(0):Number(Math.PI);
+
+      if(this.projProps_.homing_) {
+         var nearestTarget:GameObject = this.getNearestTarget();
+         if(nearestTarget != null) {
+            var targetAngle:Number = Math.atan2(nearestTarget.y_ - p.y, nearestTarget.x_ - p.x);
+            this.angle_ += (targetAngle - this.angle_) * 0.1; // Adjust angle towards target
+         }
+      }
+
       if(this.projProps_.wavy_)
       {
          periodFactor = 6 * Math.PI;

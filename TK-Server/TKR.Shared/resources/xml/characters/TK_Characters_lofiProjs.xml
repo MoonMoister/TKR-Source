@@ -24,6 +24,7 @@
       <Speed>100</Speed>
       <Damage>90</Damage>
       <LifetimeMS>4000</LifetimeMS>
+      <Homing/>
       <ArmorPiercing />
       <Size>130</Size>
       <ConditionEffect duration="2">Dazed</ConditionEffect>

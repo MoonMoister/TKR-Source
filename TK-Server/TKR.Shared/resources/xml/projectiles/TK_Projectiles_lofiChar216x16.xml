@@ -6,5 +6,6 @@
       <Index>0x0d</Index>
     </Texture>
     <Rotation>200</Rotation>
+    <Homing/>
   </Object>
 </Objects>
